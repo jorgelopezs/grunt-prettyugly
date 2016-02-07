@@ -39,44 +39,44 @@ grunt.initConfig({
 
 #### options.separator
 Type: `String`
-Default value: `',  '`
+Default value: `''`
 
 A string value that is used to do something with whatever.
 
-#### options.punctuation
+#### options.banner
 Type: `String`
-Default value: `'.'`
+Default value: `''`
 
 A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the default options are used to do something with whatever. So if the `styles1.css` file has the content `h1{color:#fff;}` and the `styles2.css` file had the content `p{padding:2em;}`, the generated result would be `h1{color:#fff}p{padding:2em}`
 
 ```js
 grunt.initConfig({
   prettyugly: {
     options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/default_options.css': ['src/styles1.css', 'src/styles2.css'],
     },
   },
 });
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, custom options are used to do something else with whatever else. So if the `styles1.css` file has the content `h1{color:#fff;}` and the `styles2.css` file had the content `p{padding:2em;}`, the generated result in this case would be `/* This is a banner */h1{color:#fff}/* --- */p{padding:2em}` 
 
 ```js
 grunt.initConfig({
   prettyugly: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      separator: '/* --- */',
+      banner: '/* This is a banner */',
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/default_options': ['src/testing', 'src/styles2.css'],
     },
   },
 });
