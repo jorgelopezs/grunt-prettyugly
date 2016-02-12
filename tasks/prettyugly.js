@@ -18,10 +18,11 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options();
-    
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
+
+
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -37,30 +38,50 @@ module.exports = function(grunt) {
       src = src.map(function(filepath) {
         var fileContents = grunt.file.read(filepath); 
 
-        if(fileContents){
-            //uglify the css contents
-            fileContents = prettyugly.ugly(fileContents);
-        }else{
-          //TODO;; Log message if verbose option
+        if(!fileContents){
           grunt.log.warn("Couldn't read " + filepath + " -- Skiped");
         }
-
         return fileContents;
       });
 
-     // console.log(src);
-      if(options.separator){
-        src = src.join(grunt.util.normalizelf(options.separator));
+      
+
+      //join the files. Add /*!{SEPARATOR}*/ as a placeholder for the separator later
+      src = src.join('/*!{SEPARATOR}*/');
+
+      
+
+       //uglify the css contents or prettify if the pretty option is set
+      if(options.pretty){
+        src = prettyugly.pretty(src);
       }else{
-        src = src.join('');
+        src = prettyugly.ugly(src);
       }
 
+      //replace the separator placeholder with the specified separator in options
+      if(options.separator){
+        src = src.replace('/*!{SEPARATOR}*/', grunt.util.normalizelf(options.separator));
+      }else{
+        // replace the separator holder with the added break lines
+        if(options.pretty){
+          src = src.replace('\n/*!{SEPARATOR}*/\n', '');
+        }else{
+          // replace in ugly - there are no new lines
+          src = src.replace('/*!{SEPARATOR}*/', '');
+        }
+      }
+
+      //append the banner to our css file
       if(options.banner){
-        src = options.banner + src;
+        if(options.pretty){
+          // prettifying add the banner with a new line at the top and bottom
+          src = '\n' + options.banner + '\n' + src;
+        }else{
+          // uglifying just add the banner to the css file
+          src = options.banner + src;
+        }
+        
       }
-
-      // Handle options.
-      //src += options.punctuation;
 
       // Write the destination file.
       grunt.file.write(f.dest, src);

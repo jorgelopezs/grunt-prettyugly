@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jorge/grunt-prettyugly.git"
+    "url": "https://github.com/jorgelopezs/grunt-prettyugly.git"
   },
   "bugs": {
-    "url": "https://github.com/jorge/grunt-prettyugly/issues"
+    "url": "https://github.com/jorgelopezs/grunt-prettyugly/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/jorge/grunt-prettyugly/blob/master/LICENSE-MIT"
+      "url": "https://github.com/jorgelopezs/grunt-prettyugly/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
