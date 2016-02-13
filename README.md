@@ -41,18 +41,24 @@ grunt.initConfig({
 Type: `String`
 Default value: `''`
 
-A string value that is used to do something with whatever.
+The separator to add in between merged css files. Optional.
 
 #### options.banner
 Type: `String`
 Default value: `''`
 
-A string value that is used to do something else with whatever else.
+This is text that will be added to the beginning of the file. i.e. The header.
+
+#### options.pretty
+Type: `Boolean`
+Default value: `FALSE`
+
+By default grunt-prettyugly minifies css files. Specifiy this option as true to prettify css files instead. 
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `styles1.css` file has the content `h1{color:#fff;}` and the `styles2.css` file had the content `p{padding:2em;}`, the generated result would be `h1{color:#fff}p{padding:2em}`
+In this example, the default options are used to minify and join `styles1.css` and `styles2.css`. So if the `styles1.css` file has the content `h1{color:#fff;}` and the `styles2.css` file had the content `p{padding:2em;}`, the generated result would be `h1{color:#fff}p{padding:2em}`
 
 ```js
 grunt.initConfig({
@@ -66,7 +72,7 @@ grunt.initConfig({
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `styles1.css` file has the content `h1{color:#fff;}` and the `styles2.css` file had the content `p{padding:2em;}`, the generated result in this case would be `/* This is a banner */h1{color:#fff}/* --- */p{padding:2em}` 
+In this example, custom options are used to join and minify `styles1.css` and `styles2.css`. In this case the separator and banner option were used. So if the `styles1.css` file has the content `h1{color:#fff;}` and the `styles2.css` file had the content `p{padding:2em;}`, the generated result in this case would be `/* This is a banner */h1{color:#fff}/* --- */p{padding:2em}` 
 
 ```js
 grunt.initConfig({
