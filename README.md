@@ -1,6 +1,6 @@
 # grunt-prettyugly
 
-> Minifies and combines css files using prettyugly module.
+> Minifies and combines css files using prettyugly module. The only difference is it doesn't optimize the css rules like grunt-cssshrink.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
