@@ -35,5 +35,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "prettyugly": "0.0.5"
+  }
 }
