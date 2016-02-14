@@ -66,8 +66,8 @@ grunt.initConfig({
     options: {},
     files: {
       'dest/default_options.css': ['src/styles1.css', 'src/styles2.css'],
-    },
-  },
+    }
+  }
 });
 ```
 
@@ -83,8 +83,27 @@ grunt.initConfig({
     },
     files: {
       'dest/default_options': ['src/testing', 'src/styles2.css'],
-    },
-  },
+    }
+  }
+});
+```
+
+#### Minify multiple separate css files
+Here, `styles1.css` and `styles2.css` are minified to their own separate files. It gets all files that end with `.css` and aren't `.min.css` in the current directory. The created files  (`styles1.min.css` and `styles2.min.css`) are placed in the `/temp/` directory.
+
+```js
+grunt.initConfig({
+  prettyugly: {
+    minify_separate : { 
+            expand: true,
+            cwd : '/',
+            src : ['*.css', '!*.min.css'],
+            dest : 'tmp/',
+            ext : '.min.css',
+            extDot : 'first'
+          
+      }
+  }
 });
 ```
 
